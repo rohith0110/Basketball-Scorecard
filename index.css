@@ -1,0 +1,239 @@
+/* Base */
+:root {
+  --bg: #1b244a;
+  --panel: #0a0001;
+  --accent: #f94f6d;
+  --muted: #9aabd8;
+  --text: #eeeeee;
+  --radius: 8px;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  text-align: center;
+  background-color: var(--bg);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Page Title */
+h1 {
+  margin: 24px 0 8px;
+  font-size: clamp(22px, 3.2vw, 32px);
+  letter-spacing: 0.5px;
+}
+
+/* Overall container centering */
+.overall {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  max-height: 100vh;
+  padding: 20px 16px 40px;
+  gap: 16px;
+}
+
+/* Timer */
+#timer-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(154, 171, 216, 0.25);
+  padding: 10px 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+#timer-container h4 {
+  color: var(--accent);
+  font-size: clamp(14px, 2.2vw, 18px);
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+#timer {
+  font-family: "Cursed Timer ULiL", monospace;
+  color: var(--accent);
+  background-color: var(--panel);
+  padding: 10px 14px;
+  border-radius: 6px;
+  min-width: 140px;
+  display: inline-block;
+  border: 1px solid rgba(249, 79, 109, 0.2);
+}
+
+/* Message */
+#message {
+  color: var(--accent);
+  font-size: clamp(14px, 2.4vw, 18px);
+  margin: 6px 0 0;
+  min-height: 24px; /* keeps layout stable even when empty */
+}
+
+/* Scores layout */
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(140px, 1fr));
+  gap: 18px;
+  width: 100%;
+  max-width: 720px;
+  margin-top: 10px;
+}
+
+.column {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(154, 171, 216, 0.25);
+  border-radius: var(--radius);
+  padding: 16px 14px 18px;
+  box-shadow: var(--shadow);
+}
+
+h3 {
+  margin: 6px 0 12px;
+  color: var(--text);
+  font-size: clamp(22px, 4vw, 32px);
+  letter-spacing: 1px;
+}
+
+/* Score board */
+.score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--panel);
+  font-size: clamp(48px, 9vw, 90px);
+  color: var(--accent);
+  width: 100%;
+  height: clamp(90px, 18vw, 120px);
+  margin: 0 auto 14px auto;
+  font-family: "Cursed Timer ULiL", monospace;
+  border-radius: 6px;
+  border: 1px solid rgba(249, 79, 109, 0.2);
+  text-shadow: 0 0 6px rgba(249, 79, 109, 0.25);
+}
+
+/* Add buttons group (kept class name 'addhome') */
+.addhome {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+button {
+  margin: 4px;
+  border-radius: 8px;
+  border: 2px solid var(--muted);
+  width: 48px;
+  height: 48px;
+  background: transparent;
+  font-family: "Cursed Timer ULiL", monospace;
+  font-size: 18px;
+  text-align: center;
+  color: var(--muted);
+  transition: transform 0.08s ease, background 0.25s ease, color 0.25s ease,
+    box-shadow 0.25s ease, border-color 0.25s ease;
+  outline: none;
+}
+
+button:hover {
+  background: var(--muted);
+  color: var(--panel);
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(154, 171, 216, 0.25);
+}
+
+button:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+button:focus-visible {
+  box-shadow: 0 0 0 3px rgba(154, 171, 216, 0.45);
+}
+
+/* Controls row */
+.control {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.control button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  line-height: 1;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border-width: 2px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.control button i {
+  text-align: center;
+  font-size: 1.45rem;
+  color: var(--muted);
+  transition: all 0.2s ease;
+}
+
+.control button:hover i {
+  cursor: pointer;
+  box-shadow: 0 0 0 rgba(154, 171, 216, 0.25);
+}
+
+.score.flash {
+  animation: glow-flash 600ms ease-out;
+}
+@keyframes glow-flash {
+  0% {
+    box-shadow: 0 0 0 rgba(249, 79, 109, 0);
+  }
+  30% {
+    box-shadow: 0 0 24px rgba(249, 79, 109, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(249, 79, 109, 0);
+  }
+}
+
+/* Small screens */
+@media (max-width: 420px) {
+  .container {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+  }
+
+  #timer {
+    min-width: 120px;
+  }
+}
+
+/* Very large screens: gently scale spacing */
+@media (min-width: 1200px) {
+  .overall {
+    gap: 20px;
+  }
+  .container {
+    gap: 24px;
+    max-width: 820px;
+  }
+}
