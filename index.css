@@ -203,6 +203,90 @@ button:focus-visible {
 .score.flash {
   animation: glow-flash 600ms ease-out;
 }
+
+.hotkey-helper {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 9999;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial,
+    sans-serif;
+  color: #111;
+}
+
+.hotkey-toggle {
+  background: #111827;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  transition: display 0.2s ease;
+}
+
+.hotkey-content {
+  margin-top: 8px;
+  background: #d0d0d0;
+  border: 1px solid #ffffff;
+  border-radius: 12px;
+  width: 280px;
+  max-height: 60vh;
+  overflow: auto;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  padding: 10px 12px;
+  animation: slideUp 0.5s ease-out;
+}
+
+.hotkey-section + .hotkey-section {
+  border-top: 1px solid #f1f5f9;
+  margin-top: 8px;
+  padding-top: 8px;
+}
+
+.hotkey-section h4 {
+  margin: 6px 0 4px;
+  font-size: 13px;
+  color: #334155;
+}
+
+.hotkey-section ul {
+  margin: 0;
+  padding-left: 16px;
+}
+
+.hotkey-section li {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #111827;
+}
+
+.hotkey-section code {
+  background: #f3f4f6;
+  padding: 1px 6px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(6px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Optional: small screens */
+@media (max-width: 520px) {
+  .hotkey-content {
+    width: min(92vw, 360px);
+  }
+}
+
 @keyframes glow-flash {
   0% {
     box-shadow: 0 0 0 rgba(249, 79, 109, 0);

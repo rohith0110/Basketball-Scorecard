@@ -129,6 +129,7 @@ function starttimer() {
         ":" +
         Math.floor(((time % 60000) % 1000) / 100);
       if (time <= 0) {
+        sendMessage("Time's up!");
         clearInterval(timer);
         timer = null;
         isRunning = false;
@@ -159,3 +160,54 @@ function reset() {
   time = 5400000;
   document.getElementById("timer").textContent = "90:00:0";
 }
+
+(function () {
+  const toggleBtn = document.getElementById("hotkey-toggle");
+  const content = document.getElementById("hotkey-content");
+
+  if (!toggleBtn || !content) return;
+
+  function openPanel() {
+    content.hidden = false;
+    toggleBtn.setAttribute("aria-expanded", "true");
+  }
+
+  function closePanel() {
+    content.hidden = true;
+    toggleBtn.setAttribute("aria-expanded", "false");
+  }
+
+  toggleBtn.addEventListener("click", () => {
+    const isOpen = toggleBtn.getAttribute("aria-expanded") === "true";
+    if (isOpen) {
+      document.getElementById("hotkey-toggle").style.display = "block";
+      closePanel();
+    } else {
+      openPanel();
+      document.getElementById("hotkey-toggle").style.display = "none";
+    }
+  });
+  document.addEventListener("click", (e) => {
+    const helper = document.getElementById("hotkey-helper");
+    if (!helper) return;
+    const isOpen = toggleBtn.getAttribute("aria-expanded") === "true";
+    if (isOpen && !helper.contains(e.target)) {
+      document.getElementById("hotkey-toggle").style.display = "block";
+      closePanel();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "?" || (e.shiftKey && e.key === "/")) {
+      e.preventDefault();
+      const isOpen = toggleBtn.getAttribute("aria-expanded") === "true";
+      if (isOpen) {
+        document.getElementById("hotkey-toggle").style.display = "block";
+        closePanel();
+      } else {
+        document.getElementById("hotkey-toggle").style.display = "none/";
+        openPanel();
+      }
+    }
+  });
+})();
