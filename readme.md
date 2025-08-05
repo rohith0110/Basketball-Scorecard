@@ -2,7 +2,7 @@
 
 This project is an interactive, web-based basketball scorecard created as part of a JavaScript programming course. It provides a clean and retro-themed interface for keeping track of scores, managing a game timer, and offering a full suite of keyboard shortcuts for efficient use.
 
-![A preview of the website](/Preview.png "Page preview")
+![A preview of the website](https://github.com/rohith0110/Basketball-Scorecard/blob/main/preview.png "Page preview")
 
 ## ✨ Features
 
